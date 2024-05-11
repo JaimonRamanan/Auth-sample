@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 abstract class AppTheme {
   static const white = Colors.white;
-  static const scaffoldBgColor = Colors.black;
   static const primaryColor = Color(0xFF00B140);
   static final ThemeData lightTheme = ThemeData(
     hintColor: white,
@@ -27,7 +26,7 @@ abstract class AppTheme {
         fontSize: 15,
       ),
     ),
+    scaffoldBackgroundColor: white,
     colorScheme: const ColorScheme.light(primary: primaryColor),
-    scaffoldBackgroundColor: scaffoldBgColor,
   );
 }

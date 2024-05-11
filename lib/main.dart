@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:auth_sample/core/theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'core/route/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +13,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appRouter = AppRouter();
     return ScreenUtilInit(
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp();
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightTheme,
+            routerConfig: appRouter.config(),
+          );
         });
   }
 }
