@@ -6,9 +6,11 @@ class TextFieldWithTitleWidget extends StatelessWidget {
   final String title;
   final String? hint;
   final TextEditingController ctr;
+  final FormFieldValidator<String>? validator;
   const TextFieldWithTitleWidget({
     super.key,
     this.hint,
+    this.validator,
     required this.ctr,
     required this.title,
   });
@@ -23,7 +25,11 @@ class TextFieldWithTitleWidget extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         SizedBox(height: 10.h),
-        CustomTextFormField(hint: hint ?? "", controller: ctr),
+        CustomTextFormField(
+          hint: hint ?? "",
+          controller: ctr,
+          validator: validator,
+        ),
       ],
     );
   }
