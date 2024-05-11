@@ -3,17 +3,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CommonButton extends StatelessWidget {
   final String name;
+  final bool disable;
   final Function()? onPressed;
-  const CommonButton({super.key, required this.name, this.onPressed});
+  const CommonButton({
+    super.key,
+    this.onPressed,
+    required this.name,
+    this.disable = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: disable ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: Theme.of(context)
+              .colorScheme
+              .primary
+              .withOpacity(disable ? 0.2 : 1),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.r),
           ),

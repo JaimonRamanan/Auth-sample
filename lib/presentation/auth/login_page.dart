@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auth_sample/core/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auth_sample/presentation/widgets/cm_button.dart';
 
 import '../../core/constants.dart';
 import '../widgets/text_field_with_title.dart';
+import '../../application/auth/auth_bloc.dart';
 import 'widgets/google_auth_button_widget.dart';
 import 'widgets/sign_up_navigation_widget.dart';
 
@@ -14,11 +16,10 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController pswdCtr = TextEditingController();
-  final TextEditingController emailCtr = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<AuthBloc>();
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -43,9 +44,12 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: 20.h),
                     TextFieldWithTitleWidget(
-                      ctr: emailCtr,
+                      ctr: bloc.emailCtr,
                       title: "Email",
                       hint: "eg: johndoe@gmail.com",
+                      onChanged: (value) {
+                        bloc.add(AuthEvent.validateSignInData());
+                      },
                       validator: (value) {
                         if (value?.isEmpty ?? true) {
                           return "Please enter email";
@@ -57,9 +61,12 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: 10.h),
                     TextFieldWithTitleWidget(
-                      ctr: pswdCtr,
+                      ctr: bloc.pswdCtr,
                       hint: "*******",
                       title: "Password",
+                      onChanged: (value) {
+                        bloc.add(AuthEvent.validateSignInData());
+                      },
                       validator: (value) {
                         if (value?.isEmpty ?? true) {
                           return "Please enter password";
@@ -70,10 +77,17 @@ class LoginPage extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: 20.h),
-                    CommonButton(
-                      name: "SIGN IN",
-                      onPressed: () {
-                        if (_formKey.currentState?.validate() ?? false) {}
+                    BlocBuilder<AuthBloc, AuthState>(
+                      buildWhen: (previous, current) =>
+                          previous.showBtn != current.showBtn,
+                      builder: (context, state) {
+                        return CommonButton(
+                          name: "SIGN IN",
+                          disable: !state.showBtn,
+                          onPressed: () {
+                            if (_formKey.currentState?.validate() ?? false) {}
+                          },
+                        );
                       },
                     ),
                     SizedBox(height: 15.h),

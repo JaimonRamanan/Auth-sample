@@ -15,12 +15,20 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AuthState {}
+mixin _$AuthState {
+  bool get showBtn => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AuthStateCopyWith<AuthState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
+  @useResult
+  $Res call({bool showBtn});
 }
 
 /// @nodoc
@@ -32,13 +40,30 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? showBtn = null,
+  }) {
+    return _then(_value.copyWith(
+      showBtn: null == showBtn
+          ? _value.showBtn
+          : showBtn // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
+abstract class _$$InitialImplCopyWith<$Res>
+    implements $AuthStateCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool showBtn});
 }
 
 /// @nodoc
@@ -48,63 +73,95 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? showBtn = null,
+  }) {
+    return _then(_$InitialImpl(
+      showBtn: null == showBtn
+          ? _value.showBtn
+          : showBtn // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+  const _$InitialImpl({this.showBtn = false});
+
+  @override
+  @JsonKey()
+  final bool showBtn;
 
   @override
   String toString() {
-    return 'AuthState()';
+    return 'AuthState(showBtn: $showBtn)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitialImpl &&
+            (identical(other.showBtn, showBtn) || other.showBtn == showBtn));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, showBtn);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 }
 
 abstract class _Initial implements AuthState {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial({final bool showBtn}) = _$InitialImpl;
+
+  @override
+  bool get showBtn;
+  @override
+  @JsonKey(ignore: true)
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() validateEmail,
+    required TResult Function() validateSignInData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? validateEmail,
+    TResult? Function()? validateSignInData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? validateEmail,
+    TResult Function()? validateSignInData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ValidateEmail value) validateEmail,
+    required TResult Function(_ValidateSingInData value) validateSignInData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ValidateEmail value)? validateEmail,
+    TResult? Function(_ValidateSingInData value)? validateSignInData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ValidateEmail value)? validateEmail,
+    TResult Function(_ValidateSingInData value)? validateSignInData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,35 +185,35 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
 }
 
 /// @nodoc
-abstract class _$$ValidateEmailImplCopyWith<$Res> {
-  factory _$$ValidateEmailImplCopyWith(
-          _$ValidateEmailImpl value, $Res Function(_$ValidateEmailImpl) then) =
-      __$$ValidateEmailImplCopyWithImpl<$Res>;
+abstract class _$$ValidateSingInDataImplCopyWith<$Res> {
+  factory _$$ValidateSingInDataImplCopyWith(_$ValidateSingInDataImpl value,
+          $Res Function(_$ValidateSingInDataImpl) then) =
+      __$$ValidateSingInDataImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ValidateEmailImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$ValidateEmailImpl>
-    implements _$$ValidateEmailImplCopyWith<$Res> {
-  __$$ValidateEmailImplCopyWithImpl(
-      _$ValidateEmailImpl _value, $Res Function(_$ValidateEmailImpl) _then)
+class __$$ValidateSingInDataImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$ValidateSingInDataImpl>
+    implements _$$ValidateSingInDataImplCopyWith<$Res> {
+  __$$ValidateSingInDataImplCopyWithImpl(_$ValidateSingInDataImpl _value,
+      $Res Function(_$ValidateSingInDataImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ValidateEmailImpl implements _ValidateEmail {
-  _$ValidateEmailImpl();
+class _$ValidateSingInDataImpl implements _ValidateSingInData {
+  _$ValidateSingInDataImpl();
 
   @override
   String toString() {
-    return 'AuthEvent.validateEmail()';
+    return 'AuthEvent.validateSignInData()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ValidateEmailImpl);
+        (other.runtimeType == runtimeType && other is _$ValidateSingInDataImpl);
   }
 
   @override
@@ -165,27 +222,27 @@ class _$ValidateEmailImpl implements _ValidateEmail {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() validateEmail,
+    required TResult Function() validateSignInData,
   }) {
-    return validateEmail();
+    return validateSignInData();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? validateEmail,
+    TResult? Function()? validateSignInData,
   }) {
-    return validateEmail?.call();
+    return validateSignInData?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? validateEmail,
+    TResult Function()? validateSignInData,
     required TResult orElse(),
   }) {
-    if (validateEmail != null) {
-      return validateEmail();
+    if (validateSignInData != null) {
+      return validateSignInData();
     }
     return orElse();
   }
@@ -193,32 +250,32 @@ class _$ValidateEmailImpl implements _ValidateEmail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ValidateEmail value) validateEmail,
+    required TResult Function(_ValidateSingInData value) validateSignInData,
   }) {
-    return validateEmail(this);
+    return validateSignInData(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ValidateEmail value)? validateEmail,
+    TResult? Function(_ValidateSingInData value)? validateSignInData,
   }) {
-    return validateEmail?.call(this);
+    return validateSignInData?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ValidateEmail value)? validateEmail,
+    TResult Function(_ValidateSingInData value)? validateSignInData,
     required TResult orElse(),
   }) {
-    if (validateEmail != null) {
-      return validateEmail(this);
+    if (validateSignInData != null) {
+      return validateSignInData(this);
     }
     return orElse();
   }
 }
 
-abstract class _ValidateEmail implements AuthEvent {
-  factory _ValidateEmail() = _$ValidateEmailImpl;
+abstract class _ValidateSingInData implements AuthEvent {
+  factory _ValidateSingInData() = _$ValidateSingInDataImpl;
 }

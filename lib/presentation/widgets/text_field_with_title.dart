@@ -6,11 +6,13 @@ class TextFieldWithTitleWidget extends StatelessWidget {
   final String title;
   final String? hint;
   final TextEditingController ctr;
+  final Function(String)? onChanged;
   final FormFieldValidator<String>? validator;
   const TextFieldWithTitleWidget({
     super.key,
     this.hint,
     this.validator,
+    this.onChanged,
     required this.ctr,
     required this.title,
   });
@@ -29,6 +31,7 @@ class TextFieldWithTitleWidget extends StatelessWidget {
           hint: hint ?? "",
           controller: ctr,
           validator: validator,
+          onChanged: onChanged,
         ),
       ],
     );
