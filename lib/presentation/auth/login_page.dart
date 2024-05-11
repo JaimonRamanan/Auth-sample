@@ -12,8 +12,9 @@ import 'widgets/sign_up_navigation_widget.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  final TextEditingController emailCtr = TextEditingController();
   final TextEditingController pswdCtr = TextEditingController();
+  final TextEditingController emailCtr = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +47,7 @@ class LoginPage extends StatelessWidget {
                   TextFieldWithTitleWidget(
                     ctr: pswdCtr,
                     title: "Password",
-                    hint: "eg: johndoe@gmail.com",
+                    hint: "*******",
                   ),
                   SizedBox(height: 20.h),
                   CommonButton(name: "SIGN IN", onPressed: () {}),

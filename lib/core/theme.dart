@@ -13,7 +13,7 @@ abstract class AppTheme {
     dividerColor: const Color(0xFFE2E8E6),
     appBarTheme: const AppBarTheme(
       backgroundColor: primaryColor,
-      iconTheme: IconThemeData(color: white),
+      iconTheme: IconThemeData(color: black),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
       ),
