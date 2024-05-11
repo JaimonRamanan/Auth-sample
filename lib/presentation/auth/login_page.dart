@@ -10,16 +10,22 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Image.asset(
-            AppImages.logo,
-            width: 54.h,
-            height: 54.h,
-          )
-        ],
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset(
+              AppImages.logo,
+              width: 54.h,
+              height: 54.h,
+            ),
+            Text(
+              "Sign in to your account",
+              style: Theme.of(context).textTheme.titleMedium,
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class AppTheme {
   static const white = Colors.white;
+  static const black = Colors.black;
   static const primaryColor = Color(0xFF00B140);
   static final ThemeData lightTheme = ThemeData(
     hintColor: white,
@@ -16,14 +18,14 @@ abstract class AppTheme {
       ),
     ),
     textTheme: TextTheme(
-      titleSmall: TextStyle(
-        color: white,
-        fontSize: 20,
+      titleMedium: TextStyle(
+        color: black,
+        fontSize: 25.sp,
         fontWeight: FontWeight.w500,
       ),
       bodyMedium: TextStyle(
-        color: white,
-        fontSize: 15,
+        color: black,
+        fontSize: 15.sp,
       ),
     ),
     scaffoldBackgroundColor: white,
