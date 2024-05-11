@@ -15,5 +15,9 @@ class AppRouter extends $AppRouter {
           page: SignupRoute.page,
           path: RouteNames.signupScreen,
         ),
+        AutoRoute(
+          page: HomeRoute.page,
+          path: RouteNames.homeScreen,
+        ),
       ];
 }

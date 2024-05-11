@@ -4,9 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CommonButton extends StatelessWidget {
   final String name;
   final bool disable;
+  final double? width;
   final Function()? onPressed;
   const CommonButton({
     super.key,
+    this.width,
     this.onPressed,
     required this.name,
     this.disable = false,
@@ -15,7 +17,7 @@ class CommonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: width ?? double.infinity,
       child: ElevatedButton(
         onPressed: disable ? null : onPressed,
         style: ElevatedButton.styleFrom(

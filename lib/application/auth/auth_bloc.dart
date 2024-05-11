@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auth_sample/core/constants.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_state.dart';
@@ -15,6 +16,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final TextEditingController signUpPswdCtr = TextEditingController();
   final TextEditingController signUpemailCtr = TextEditingController();
   final TextEditingController cnfrmPswdCtr = TextEditingController();
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: scopes);
+
   AuthBloc() : super(AuthState.initial()) {
     on<_ValidateSingInData>(
       (event, emit) {
@@ -40,6 +44,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         } else {
           emit(state.copyWith(showSignUpBtn: false));
         }
+      },
+    );
+
+    on<_LoginWithGoogle>(
+      (event, emit) async {
+        try {
+          if (await _googleSignIn.isSignedIn()) {
+            _googleSignIn.signOut();
+          }
+          GoogleSignInAccount? account = await _googleSignIn.signIn();
+          emit(state.copyWith(account: account));
+        } catch (error) {
+          debugPrint(error.toString());
+        }
+      },
+    );
+
+    on<_LogOut>(
+      (event, emit) async {
+        await _googleSignIn.signOut();
+        emit(state.copyWith(account: null));
       },
     );
   }

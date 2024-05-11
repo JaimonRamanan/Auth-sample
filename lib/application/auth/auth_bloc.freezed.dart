@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
+  GoogleSignInAccount? get account => throw _privateConstructorUsedError;
   bool get showSignInBtn => throw _privateConstructorUsedError;
   bool get showSignUpBtn => throw _privateConstructorUsedError;
 
@@ -29,7 +30,8 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({bool showSignInBtn, bool showSignUpBtn});
+  $Res call(
+      {GoogleSignInAccount? account, bool showSignInBtn, bool showSignUpBtn});
 }
 
 /// @nodoc
@@ -45,10 +47,15 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? account = freezed,
     Object? showSignInBtn = null,
     Object? showSignUpBtn = null,
   }) {
     return _then(_value.copyWith(
+      account: freezed == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as GoogleSignInAccount?,
       showSignInBtn: null == showSignInBtn
           ? _value.showSignInBtn
           : showSignInBtn // ignore: cast_nullable_to_non_nullable
@@ -69,7 +76,8 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool showSignInBtn, bool showSignUpBtn});
+  $Res call(
+      {GoogleSignInAccount? account, bool showSignInBtn, bool showSignUpBtn});
 }
 
 /// @nodoc
@@ -83,10 +91,15 @@ class __$$InitialImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? account = freezed,
     Object? showSignInBtn = null,
     Object? showSignUpBtn = null,
   }) {
     return _then(_$InitialImpl(
+      account: freezed == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as GoogleSignInAccount?,
       showSignInBtn: null == showSignInBtn
           ? _value.showSignInBtn
           : showSignInBtn // ignore: cast_nullable_to_non_nullable
@@ -102,8 +115,11 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.showSignInBtn = false, this.showSignUpBtn = false});
+  const _$InitialImpl(
+      {this.account, this.showSignInBtn = false, this.showSignUpBtn = false});
 
+  @override
+  final GoogleSignInAccount? account;
   @override
   @JsonKey()
   final bool showSignInBtn;
@@ -113,7 +129,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'AuthState(showSignInBtn: $showSignInBtn, showSignUpBtn: $showSignUpBtn)';
+    return 'AuthState(account: $account, showSignInBtn: $showSignInBtn, showSignUpBtn: $showSignUpBtn)';
   }
 
   @override
@@ -121,6 +137,7 @@ class _$InitialImpl implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
+            (identical(other.account, account) || other.account == account) &&
             (identical(other.showSignInBtn, showSignInBtn) ||
                 other.showSignInBtn == showSignInBtn) &&
             (identical(other.showSignUpBtn, showSignUpBtn) ||
@@ -128,7 +145,8 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, showSignInBtn, showSignUpBtn);
+  int get hashCode =>
+      Object.hash(runtimeType, account, showSignInBtn, showSignUpBtn);
 
   @JsonKey(ignore: true)
   @override
@@ -138,9 +156,13 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements AuthState {
-  const factory _Initial({final bool showSignInBtn, final bool showSignUpBtn}) =
-      _$InitialImpl;
+  const factory _Initial(
+      {final GoogleSignInAccount? account,
+      final bool showSignInBtn,
+      final bool showSignUpBtn}) = _$InitialImpl;
 
+  @override
+  GoogleSignInAccount? get account;
   @override
   bool get showSignInBtn;
   @override
@@ -157,18 +179,24 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() validateSignInData,
     required TResult Function() validateSignUpData,
+    required TResult Function() loginWithGoogle,
+    required TResult Function() logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? validateSignInData,
     TResult? Function()? validateSignUpData,
+    TResult? Function()? loginWithGoogle,
+    TResult? Function()? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? validateSignInData,
     TResult Function()? validateSignUpData,
+    TResult Function()? loginWithGoogle,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -176,18 +204,24 @@ mixin _$AuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ValidateSingInData value) validateSignInData,
     required TResult Function(_ValidateSingUpData value) validateSignUpData,
+    required TResult Function(_LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(_LogOut value) logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ValidateSingInData value)? validateSignInData,
     TResult? Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult? Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult? Function(_LogOut value)? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ValidateSingInData value)? validateSignInData,
     TResult Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -250,6 +284,8 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   TResult when<TResult extends Object?>({
     required TResult Function() validateSignInData,
     required TResult Function() validateSignUpData,
+    required TResult Function() loginWithGoogle,
+    required TResult Function() logOut,
   }) {
     return validateSignInData();
   }
@@ -259,6 +295,8 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? validateSignInData,
     TResult? Function()? validateSignUpData,
+    TResult? Function()? loginWithGoogle,
+    TResult? Function()? logOut,
   }) {
     return validateSignInData?.call();
   }
@@ -268,6 +306,8 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? validateSignInData,
     TResult Function()? validateSignUpData,
+    TResult Function()? loginWithGoogle,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (validateSignInData != null) {
@@ -281,6 +321,8 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   TResult map<TResult extends Object?>({
     required TResult Function(_ValidateSingInData value) validateSignInData,
     required TResult Function(_ValidateSingUpData value) validateSignUpData,
+    required TResult Function(_LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return validateSignInData(this);
   }
@@ -290,6 +332,8 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ValidateSingInData value)? validateSignInData,
     TResult? Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult? Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return validateSignInData?.call(this);
   }
@@ -299,6 +343,8 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ValidateSingInData value)? validateSignInData,
     TResult Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (validateSignInData != null) {
@@ -352,6 +398,8 @@ class _$ValidateSingUpDataImpl implements _ValidateSingUpData {
   TResult when<TResult extends Object?>({
     required TResult Function() validateSignInData,
     required TResult Function() validateSignUpData,
+    required TResult Function() loginWithGoogle,
+    required TResult Function() logOut,
   }) {
     return validateSignUpData();
   }
@@ -361,6 +409,8 @@ class _$ValidateSingUpDataImpl implements _ValidateSingUpData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? validateSignInData,
     TResult? Function()? validateSignUpData,
+    TResult? Function()? loginWithGoogle,
+    TResult? Function()? logOut,
   }) {
     return validateSignUpData?.call();
   }
@@ -370,6 +420,8 @@ class _$ValidateSingUpDataImpl implements _ValidateSingUpData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? validateSignInData,
     TResult Function()? validateSignUpData,
+    TResult Function()? loginWithGoogle,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (validateSignUpData != null) {
@@ -383,6 +435,8 @@ class _$ValidateSingUpDataImpl implements _ValidateSingUpData {
   TResult map<TResult extends Object?>({
     required TResult Function(_ValidateSingInData value) validateSignInData,
     required TResult Function(_ValidateSingUpData value) validateSignUpData,
+    required TResult Function(_LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return validateSignUpData(this);
   }
@@ -392,6 +446,8 @@ class _$ValidateSingUpDataImpl implements _ValidateSingUpData {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ValidateSingInData value)? validateSignInData,
     TResult? Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult? Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return validateSignUpData?.call(this);
   }
@@ -401,6 +457,8 @@ class _$ValidateSingUpDataImpl implements _ValidateSingUpData {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ValidateSingInData value)? validateSignInData,
     TResult Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (validateSignUpData != null) {
@@ -412,4 +470,232 @@ class _$ValidateSingUpDataImpl implements _ValidateSingUpData {
 
 abstract class _ValidateSingUpData implements AuthEvent {
   factory _ValidateSingUpData() = _$ValidateSingUpDataImpl;
+}
+
+/// @nodoc
+abstract class _$$LoginWithGoogleImplCopyWith<$Res> {
+  factory _$$LoginWithGoogleImplCopyWith(_$LoginWithGoogleImpl value,
+          $Res Function(_$LoginWithGoogleImpl) then) =
+      __$$LoginWithGoogleImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoginWithGoogleImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$LoginWithGoogleImpl>
+    implements _$$LoginWithGoogleImplCopyWith<$Res> {
+  __$$LoginWithGoogleImplCopyWithImpl(
+      _$LoginWithGoogleImpl _value, $Res Function(_$LoginWithGoogleImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoginWithGoogleImpl implements _LoginWithGoogle {
+  _$LoginWithGoogleImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.loginWithGoogle()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoginWithGoogleImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() validateSignInData,
+    required TResult Function() validateSignUpData,
+    required TResult Function() loginWithGoogle,
+    required TResult Function() logOut,
+  }) {
+    return loginWithGoogle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? validateSignInData,
+    TResult? Function()? validateSignUpData,
+    TResult? Function()? loginWithGoogle,
+    TResult? Function()? logOut,
+  }) {
+    return loginWithGoogle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? validateSignInData,
+    TResult Function()? validateSignUpData,
+    TResult Function()? loginWithGoogle,
+    TResult Function()? logOut,
+    required TResult orElse(),
+  }) {
+    if (loginWithGoogle != null) {
+      return loginWithGoogle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ValidateSingInData value) validateSignInData,
+    required TResult Function(_ValidateSingUpData value) validateSignUpData,
+    required TResult Function(_LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(_LogOut value) logOut,
+  }) {
+    return loginWithGoogle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ValidateSingInData value)? validateSignInData,
+    TResult? Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult? Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult? Function(_LogOut value)? logOut,
+  }) {
+    return loginWithGoogle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ValidateSingInData value)? validateSignInData,
+    TResult Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(_LogOut value)? logOut,
+    required TResult orElse(),
+  }) {
+    if (loginWithGoogle != null) {
+      return loginWithGoogle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoginWithGoogle implements AuthEvent {
+  factory _LoginWithGoogle() = _$LoginWithGoogleImpl;
+}
+
+/// @nodoc
+abstract class _$$LogOutImplCopyWith<$Res> {
+  factory _$$LogOutImplCopyWith(
+          _$LogOutImpl value, $Res Function(_$LogOutImpl) then) =
+      __$$LogOutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LogOutImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$LogOutImpl>
+    implements _$$LogOutImplCopyWith<$Res> {
+  __$$LogOutImplCopyWithImpl(
+      _$LogOutImpl _value, $Res Function(_$LogOutImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LogOutImpl implements _LogOut {
+  _$LogOutImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.logOut()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LogOutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() validateSignInData,
+    required TResult Function() validateSignUpData,
+    required TResult Function() loginWithGoogle,
+    required TResult Function() logOut,
+  }) {
+    return logOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? validateSignInData,
+    TResult? Function()? validateSignUpData,
+    TResult? Function()? loginWithGoogle,
+    TResult? Function()? logOut,
+  }) {
+    return logOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? validateSignInData,
+    TResult Function()? validateSignUpData,
+    TResult Function()? loginWithGoogle,
+    TResult Function()? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ValidateSingInData value) validateSignInData,
+    required TResult Function(_ValidateSingUpData value) validateSignUpData,
+    required TResult Function(_LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(_LogOut value) logOut,
+  }) {
+    return logOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ValidateSingInData value)? validateSignInData,
+    TResult? Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult? Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult? Function(_LogOut value)? logOut,
+  }) {
+    return logOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ValidateSingInData value)? validateSignInData,
+    TResult Function(_ValidateSingUpData value)? validateSignUpData,
+    TResult Function(_LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(_LogOut value)? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LogOut implements AuthEvent {
+  factory _LogOut() = _$LogOutImpl;
 }
