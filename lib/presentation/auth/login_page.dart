@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auth_sample/presentation/widgets/cm_button.dart';
 
 import '../widgets/text_field_with_title.dart';
+import 'widgets/google_auth_button_widget.dart';
+import 'widgets/sign_up_navigation_widget.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget {
@@ -16,38 +18,47 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Image.asset(
-                AppImages.logo,
-                width: 54.h,
-                height: 54.h,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppImages.logo,
+                    width: 54.h,
+                    height: 54.h,
+                  ),
+                  SizedBox(height: 40.h),
+                  Text(
+                    "Sign in to your account",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  SizedBox(height: 20.h),
+                  TextFieldWithTitleWidget(
+                    ctr: emailCtr,
+                    title: "Email",
+                    hint: "eg: johndoe@gmail.com",
+                  ),
+                  SizedBox(height: 10.h),
+                  TextFieldWithTitleWidget(
+                    ctr: pswdCtr,
+                    title: "Password",
+                    hint: "eg: johndoe@gmail.com",
+                  ),
+                  SizedBox(height: 20.h),
+                  CommonButton(name: "SIGN IN", onPressed: () {}),
+                  SizedBox(height: 15.h),
+                  const Text("or sign in with"),
+                  SizedBox(height: 15.h),
+                  const GoogleAuthBtnWidget(),
+                  SizedBox(height: 15.h),
+                  const SignupNavigationWidget()
+                ],
               ),
-              SizedBox(height: 40.h),
-              Text(
-                "Sign in to your account",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              SizedBox(height: 20.h),
-              TextFieldWithTitleWidget(
-                ctr: emailCtr,
-                title: "Email",
-                hint: "eg: johndoe@gmail.com",
-              ),
-              SizedBox(height: 10.h),
-              TextFieldWithTitleWidget(
-                ctr: pswdCtr,
-                title: "Password",
-                hint: "eg: johndoe@gmail.com",
-              ),
-              SizedBox(height: 20.h),
-              CommonButton(name: "SIGN IN", onPressed: () {}),
-              const Spacer(),
-            ],
+            ),
           ),
         ),
       ),
