@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  bool get showBtn => throw _privateConstructorUsedError;
+  bool get showSignInBtn => throw _privateConstructorUsedError;
+  bool get showSignUpBtn => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({bool showBtn});
+  $Res call({bool showSignInBtn, bool showSignUpBtn});
 }
 
 /// @nodoc
@@ -44,12 +45,17 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? showBtn = null,
+    Object? showSignInBtn = null,
+    Object? showSignUpBtn = null,
   }) {
     return _then(_value.copyWith(
-      showBtn: null == showBtn
-          ? _value.showBtn
-          : showBtn // ignore: cast_nullable_to_non_nullable
+      showSignInBtn: null == showSignInBtn
+          ? _value.showSignInBtn
+          : showSignInBtn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showSignUpBtn: null == showSignUpBtn
+          ? _value.showSignUpBtn
+          : showSignUpBtn // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -63,7 +69,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool showBtn});
+  $Res call({bool showSignInBtn, bool showSignUpBtn});
 }
 
 /// @nodoc
@@ -77,12 +83,17 @@ class __$$InitialImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? showBtn = null,
+    Object? showSignInBtn = null,
+    Object? showSignUpBtn = null,
   }) {
     return _then(_$InitialImpl(
-      showBtn: null == showBtn
-          ? _value.showBtn
-          : showBtn // ignore: cast_nullable_to_non_nullable
+      showSignInBtn: null == showSignInBtn
+          ? _value.showSignInBtn
+          : showSignInBtn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showSignUpBtn: null == showSignUpBtn
+          ? _value.showSignUpBtn
+          : showSignUpBtn // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -91,15 +102,18 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.showBtn = false});
+  const _$InitialImpl({this.showSignInBtn = false, this.showSignUpBtn = false});
 
   @override
   @JsonKey()
-  final bool showBtn;
+  final bool showSignInBtn;
+  @override
+  @JsonKey()
+  final bool showSignUpBtn;
 
   @override
   String toString() {
-    return 'AuthState(showBtn: $showBtn)';
+    return 'AuthState(showSignInBtn: $showSignInBtn, showSignUpBtn: $showSignUpBtn)';
   }
 
   @override
@@ -107,11 +121,14 @@ class _$InitialImpl implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
-            (identical(other.showBtn, showBtn) || other.showBtn == showBtn));
+            (identical(other.showSignInBtn, showSignInBtn) ||
+                other.showSignInBtn == showSignInBtn) &&
+            (identical(other.showSignUpBtn, showSignUpBtn) ||
+                other.showSignUpBtn == showSignUpBtn));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, showBtn);
+  int get hashCode => Object.hash(runtimeType, showSignInBtn, showSignUpBtn);
 
   @JsonKey(ignore: true)
   @override
@@ -121,10 +138,13 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements AuthState {
-  const factory _Initial({final bool showBtn}) = _$InitialImpl;
+  const factory _Initial({final bool showSignInBtn, final bool showSignUpBtn}) =
+      _$InitialImpl;
 
   @override
-  bool get showBtn;
+  bool get showSignInBtn;
+  @override
+  bool get showSignUpBtn;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
@@ -136,32 +156,38 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() validateSignInData,
+    required TResult Function() validateSignUpData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? validateSignInData,
+    TResult? Function()? validateSignUpData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? validateSignInData,
+    TResult Function()? validateSignUpData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ValidateSingInData value) validateSignInData,
+    required TResult Function(_ValidateSingUpData value) validateSignUpData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ValidateSingInData value)? validateSignInData,
+    TResult? Function(_ValidateSingUpData value)? validateSignUpData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ValidateSingInData value)? validateSignInData,
+    TResult Function(_ValidateSingUpData value)? validateSignUpData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -223,6 +249,7 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() validateSignInData,
+    required TResult Function() validateSignUpData,
   }) {
     return validateSignInData();
   }
@@ -231,6 +258,7 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? validateSignInData,
+    TResult? Function()? validateSignUpData,
   }) {
     return validateSignInData?.call();
   }
@@ -239,6 +267,7 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? validateSignInData,
+    TResult Function()? validateSignUpData,
     required TResult orElse(),
   }) {
     if (validateSignInData != null) {
@@ -251,6 +280,7 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ValidateSingInData value) validateSignInData,
+    required TResult Function(_ValidateSingUpData value) validateSignUpData,
   }) {
     return validateSignInData(this);
   }
@@ -259,6 +289,7 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ValidateSingInData value)? validateSignInData,
+    TResult? Function(_ValidateSingUpData value)? validateSignUpData,
   }) {
     return validateSignInData?.call(this);
   }
@@ -267,6 +298,7 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ValidateSingInData value)? validateSignInData,
+    TResult Function(_ValidateSingUpData value)? validateSignUpData,
     required TResult orElse(),
   }) {
     if (validateSignInData != null) {
@@ -278,4 +310,106 @@ class _$ValidateSingInDataImpl implements _ValidateSingInData {
 
 abstract class _ValidateSingInData implements AuthEvent {
   factory _ValidateSingInData() = _$ValidateSingInDataImpl;
+}
+
+/// @nodoc
+abstract class _$$ValidateSingUpDataImplCopyWith<$Res> {
+  factory _$$ValidateSingUpDataImplCopyWith(_$ValidateSingUpDataImpl value,
+          $Res Function(_$ValidateSingUpDataImpl) then) =
+      __$$ValidateSingUpDataImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ValidateSingUpDataImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$ValidateSingUpDataImpl>
+    implements _$$ValidateSingUpDataImplCopyWith<$Res> {
+  __$$ValidateSingUpDataImplCopyWithImpl(_$ValidateSingUpDataImpl _value,
+      $Res Function(_$ValidateSingUpDataImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ValidateSingUpDataImpl implements _ValidateSingUpData {
+  _$ValidateSingUpDataImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.validateSignUpData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ValidateSingUpDataImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() validateSignInData,
+    required TResult Function() validateSignUpData,
+  }) {
+    return validateSignUpData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? validateSignInData,
+    TResult? Function()? validateSignUpData,
+  }) {
+    return validateSignUpData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? validateSignInData,
+    TResult Function()? validateSignUpData,
+    required TResult orElse(),
+  }) {
+    if (validateSignUpData != null) {
+      return validateSignUpData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ValidateSingInData value) validateSignInData,
+    required TResult Function(_ValidateSingUpData value) validateSignUpData,
+  }) {
+    return validateSignUpData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ValidateSingInData value)? validateSignInData,
+    TResult? Function(_ValidateSingUpData value)? validateSignUpData,
+  }) {
+    return validateSignUpData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ValidateSingInData value)? validateSignInData,
+    TResult Function(_ValidateSingUpData value)? validateSignUpData,
+    required TResult orElse(),
+  }) {
+    if (validateSignUpData != null) {
+      return validateSignUpData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ValidateSingUpData implements AuthEvent {
+  factory _ValidateSingUpData() = _$ValidateSingUpDataImpl;
 }

@@ -10,6 +10,11 @@ part 'auth_bloc.freezed.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final TextEditingController pswdCtr = TextEditingController();
   final TextEditingController emailCtr = TextEditingController();
+
+  final TextEditingController nameCtr = TextEditingController();
+  final TextEditingController signUpPswdCtr = TextEditingController();
+  final TextEditingController signUpemailCtr = TextEditingController();
+  final TextEditingController cnfrmPswdCtr = TextEditingController();
   AuthBloc() : super(AuthState.initial()) {
     on<_ValidateSingInData>(
       (event, emit) {
@@ -17,9 +22,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             pswdCtr.text.isNotEmpty &&
             emailRegx.hasMatch(emailCtr.text) &&
             pswdRegx.hasMatch(pswdCtr.text)) {
-          emit(state.copyWith(showBtn: true));
+          emit(state.copyWith(showSignInBtn: true));
         } else {
-          emit(state.copyWith(showBtn: false));
+          emit(state.copyWith(showSignInBtn: false));
+        }
+      },
+    );
+
+    on<_ValidateSingUpData>(
+      (event, emit) {
+        if (nameCtr.text.isNotEmpty &&
+            signUpemailCtr.text.isNotEmpty &&
+            signUpPswdCtr.text.isNotEmpty &&
+            emailRegx.hasMatch(signUpemailCtr.text) &&
+            pswdRegx.hasMatch(signUpPswdCtr.text)) {
+          emit(state.copyWith(showSignUpBtn: true));
+        } else {
+          emit(state.copyWith(showSignUpBtn: false));
         }
       },
     );

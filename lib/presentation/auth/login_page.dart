@@ -3,9 +3,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auth_sample/core/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:auth_sample/presentation/widgets/cm_button.dart';
 
 import '../../core/constants.dart';
+import 'widgets/signin_btn_widget.dart';
 import '../widgets/text_field_with_title.dart';
 import '../../application/auth/auth_bloc.dart';
 import 'widgets/google_auth_button_widget.dart';
@@ -77,19 +77,7 @@ class LoginPage extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: 20.h),
-                    BlocBuilder<AuthBloc, AuthState>(
-                      buildWhen: (previous, current) =>
-                          previous.showBtn != current.showBtn,
-                      builder: (context, state) {
-                        return CommonButton(
-                          name: "SIGN IN",
-                          disable: !state.showBtn,
-                          onPressed: () {
-                            if (_formKey.currentState?.validate() ?? false) {}
-                          },
-                        );
-                      },
-                    ),
+                    SigninBtnWidget(formKey: _formKey),
                     SizedBox(height: 15.h),
                     const Text("or sign in with"),
                     SizedBox(height: 15.h),
