@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 abstract class AppTheme {
   static const white = Colors.white;
   static const black = Colors.black;
-  static const primaryColor = Color(0xFF00B140);
+  static const fillColor = Color(0xFFFAFAFA);
+  static const primaryColor = Color.fromRGBO(0, 177, 64, 1);
   static final ThemeData lightTheme = ThemeData(
     hintColor: white,
     focusColor: white,
@@ -26,6 +27,11 @@ abstract class AppTheme {
       bodyMedium: TextStyle(
         color: black,
         fontSize: 15.sp,
+      ),
+      labelMedium: TextStyle(
+        color: white,
+        fontSize: 15.sp,
+        fontWeight: FontWeight.w500,
       ),
     ),
     scaffoldBackgroundColor: white,
